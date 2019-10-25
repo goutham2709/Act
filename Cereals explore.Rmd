@@ -1,0 +1,43 @@
+---
+title: "Cereals"
+author: "Goutham"
+date: "10/24/2019"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exloring nutrition data on 80 cereal products
+
+Dataset link: https://www.kaggle.com/crawford/80-cereals/download
+
+```{r load packages and data}
+library(tidyverse)
+
+cereals <- read.csv("cereal.csv")
+```
+
+```{r}
+ggplot(cereals) +
+  geom_bar(aes(x = type), fill = "red")
+
+ggplot(cereals) +
+  geom_bar(aes(mfr))
+```
+
+```{r}
+cereals %>% summarise(fat = mean(fat, na.ram = TRUE),
+                      calories = mean(calories, na.rm = TRUE),
+                      protein = mean(protein, na.rm = TRUE),
+                      sodium = mean(sodium, na.rm = TRUE),
+                      fiber = mean(fiber, na.rm = TRUE),
+                      carbo = mean(carbo, na.rm = TRUE),
+                      sugars = mean(sugars, na.rm = TRUE),
+                      potass = mean(potass, na.rm = TRUE),
+                      vitamins = mean(vitamins, na.rm = TRUE))
+```
+
